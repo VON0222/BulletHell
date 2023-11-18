@@ -11,10 +11,10 @@ public class EnemyCounter : MonoBehaviour
 
     public void OnEnable()
     {
-        BulletSpawner.OnEnemySpawned += IncrementEnemyCount;
-        BulletSpawner.OnEnemyDespawned += DecrementEnemyCount;
-        BossBehaviour.OnEnemySpawned += IncrementEnemyCount;
-        BossBehaviour.OnEnemyDespawned += DecrementEnemyCount;
+        BulletSpawner.OnSpawned += IncrementEnemyCount;
+        BossBehaviour.OnBossSpawned += IncrementEnemyCount;
+        BulletSpawner.OnDespawned += DecrementEnemyCount;
+        BossBehaviour.OnBossDespawned += DecrementEnemyCount;
     }
 
     public void IncrementEnemyCount()

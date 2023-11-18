@@ -9,8 +9,8 @@ public class BossBehaviour : MonoBehaviour
     public GameObject player;
 
     public static Action OnEnd;
-    public static Action OnEnemySpawned;
-    public static Action OnEnemyDespawned;
+    public static Action OnBossSpawned;
+    public static Action OnBossDespawned;
 
     public float bulletSpeed = 40f;
     public int numberOfBullets = 12;
@@ -32,8 +32,8 @@ public class BossBehaviour : MonoBehaviour
 
     public void OnEnable()
     {
+        OnBossSpawned?.Invoke();
         TimeManager.OnSecondChanged += TimeCheck;
-        OnEnemySpawned?.Invoke();
     }
 
     private IEnumerator Routine1()
@@ -224,8 +224,8 @@ public class BossBehaviour : MonoBehaviour
 
                 if(TimeManager.Second == 18)
                 {
+                    OnBossDespawned?.Invoke();
                     Destroy(gameObject);
-                    OnEnemyDespawned?.Invoke();
                 }
             }
         }

@@ -8,8 +8,8 @@ public class BulletSpawner : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject player;
 
-    public static Action OnEnemySpawned;
-    public static Action OnEnemyDespawned;
+    public static Action OnSpawned;
+    public static Action OnDespawned;
     
     public float bulletSpeed = 40f;
     public int numberOfBullets = 5;
@@ -19,8 +19,8 @@ public class BulletSpawner : MonoBehaviour
 
     public void OnEnable()
     {
+        OnSpawned?.Invoke();
         TimeManager.OnSecondChanged += TimeCheck;
-        OnEnemySpawned?.Invoke();
     }
 
     private IEnumerator SpawnAtack()
@@ -80,8 +80,8 @@ public class BulletSpawner : MonoBehaviour
 
                 if(TimeManager.Minute == 0 && TimeManager.Second == 33)
                 {
+                    OnDespawned?.Invoke();
                     Destroy(gameObject);
-                    OnEnemyDespawned?.Invoke();
                 }
             }
         }
